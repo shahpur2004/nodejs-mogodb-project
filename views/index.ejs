@@ -1,13 +1,3 @@
-var express = require('express');
-var router = express.Router();
-var ControllerDatabase = require('../controller/ControllerDatabase');
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-res.send('this is the project mongo');
-});
-
-router.post('/storeData', ControllerDatabase.storeData);
-
-
-module.exports = router;
+<h1><%= message %></h1>
+<h2><%= error.status %></h2>
+<pre><%= error.stack %></pre>

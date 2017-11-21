@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var ControllerDatabase = require('../controller/ControllerDatabase');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function (req, res, next) {
+    res.send('this is the project mongo');
 });
+
+router.post('/storeData', ControllerDatabase.storeData);
+
 
 module.exports = router;
