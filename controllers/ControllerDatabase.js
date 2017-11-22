@@ -29,7 +29,7 @@ module.exports.storeData = function (req, res, next) {
         //customer collection operation
         var CUSTOMERS = db.collection('CUSTOMERS');
 
-      var customerdata = {
+        var customerdata = {
             _id: customerID,
             FIRSTNAME: info['firstname'],
             LASTNAME: info['lastname'],
@@ -50,76 +50,82 @@ module.exports.storeData = function (req, res, next) {
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
-            //customerID = result.insertedCount + " -- " + result.ok + " -- " + result.ops[0]._id + " -- " +
-            //    result.insertedId + " -- " + result.getInsertedIds().toString();
         });
         //customer collection operation
 
-        res.send(JSON.stringify(req.body.card));
+        //res.send(JSON.stringify(req.body.card));
 
 
-        /*
+        //Bilining collection operation
+        var BILLING = db.collection('BILLING');
 
-                //Bilining collection operation
-                var BILLING = db.collection('BILLING');
+        // var bilingdata = {
+        //     _id: billingID,
+        //     CUSTOMER_ID: customerID,
+        //     CREDITCARDTYPE: card['type'],
+        //     CREDITCARDNUM: card['number'],
+        //     CREDITCARDEXP: card['date'],
+        //     NAMEONCREDITCARD: card['name']
+        // };
 
-                var bilingdata = {
-                    _id: billingID,
-                    CUSTOMER_ID: customerID,
-                    CREDITCARDTYPE: card['type'],
-                    CREDITCARDNUM: card['number'],
-                    CREDITCARDEXP: card['date'],
-                    NAMEONCREDITCARD: card['name']
-                };
-
-                BILLING.insertOne(bilingdata, function (err, result) {
-                    if (err) throw err;
-
-                });
-                //Bilining collection operation
-
-
-                //Shipping collection operation
-                var SHIPPING = db.collection('SHIPPING');
-
-                   var shipingdata = {
-                    _id: shippingID,
-                    CUSTOMER_ID: customerID,
-                    SHIPPING_STREET: info['address'] + ' ' + shipment_info['address2'],
-                    SHIPPING_CITY: info['city'],
-                    SHIPPING_STATE: info['state'],
-                    SHIPPING_ZIP: info['zipcode'],
-                    };
-
-                SHIPPING.insertOne(shipingdata, function (err, result) {
-                    if (err) throw err;
-
-                });
-                //Shipping collection operation
+        var bilingdata = {
+            _id: billingID,
+            CUSTOMER_ID: customerID,
+            CREDITCARDTYPE: 1,
+            CREDITCARDNUM: 2,
+            CREDITCARDEXP: 3,
+            NAMEONCREDITCARD: 4
+        };
 
 
-                //(_id, CUSTOMER_ID, BILLING_ID, SHIPPING_ID, DATE, PRODUCT_VECTOR, ORDER_TOTAL)
-                //Order collection operation
-                var ORDERS = db.collection('ORDERS');
+        BILLING.insertOne(bilingdata, function (err, result) {
+            if (err) throw err;
 
-                var orderdata = {
-                    CUSTOMER_ID: customerID,
-                    BILLING_ID: billingID,
-                    SHIPPING_ID: shippingID,
-                    DATE: (new Date()).toDateString(),
-                    PRODUCT_VECTOR: cart,
-                    ORDER_TOTAL: Object.keys(cart).length
-                };
-
-                ORDERS.insertOne(orderdata, function (err, result) {
-                    if (err) throw err;
-
-                });
-                //Order collection operation
+        });
+        //Bilining collection operation
 
 
-                res.send('Your order is successful');
-        */
+        //Shipping collection operation
+        var SHIPPING = db.collection('SHIPPING');
+
+        var shipingdata = {
+            _id: shippingID,
+            CUSTOMER_ID: customerID,
+            SHIPPING_STREET: info['address'] + ' ' + shipment_info['address2'],
+            SHIPPING_CITY: info['city'],
+            SHIPPING_STATE: info['state'],
+            SHIPPING_ZIP: info['zipcode']
+        };
+
+        SHIPPING.insertOne(shipingdata, function (err, result) {
+            if (err) throw err;
+
+        });
+        //Shipping collection operation
+
+
+        //(_id, CUSTOMER_ID, BILLING_ID, SHIPPING_ID, DATE, PRODUCT_VECTOR, ORDER_TOTAL)
+        //Order collection operation
+        var ORDERS = db.collection('ORDERS');
+
+        var orderdata = {
+            CUSTOMER_ID: customerID,
+            BILLING_ID: billingID,
+            SHIPPING_ID: shippingID,
+            DATE: (new Date()).toDateString(),
+            PRODUCT_VECTOR: cart,
+            ORDER_TOTAL: Object.keys(cart).length
+        };
+
+        ORDERS.insertOne(orderdata, function (err, result) {
+            if (err) throw err;
+
+        });
+        //Order collection operation
+
+
+        res.send('Your order is successful');
+
 
         //close connection when your app is terminating.
         db.close(function (err) {
