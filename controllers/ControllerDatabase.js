@@ -17,25 +17,19 @@ module.exports.storeData = function (req, res, next) {
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
 
-        //var session_basket = JSON.parse(req.body.info);
-        //var shipment_info = JSON.parse(req.body.card);
-        //var payment_info = JSON.parse(req.body.cart);
+        var info = JSON.parse(req.body.info);
+        var card = JSON.parse(req.body.card);
+        var cart = JSON.parse(req.body.cart);
 
 
-        res.send("shahpur  --- "+JSON.stringify(req.body.info));
-
-
-        /*var customerID = Math.floor((Math.random() * 1000000000000) + 1);
+        var customerID = Math.floor((Math.random() * 1000000000000) + 1);
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
         //customer collection operation
         var CUSTOMERS = db.collection('CUSTOMERS');
-        /!*CUSTOMERS.deleteMany({}, function (err, result) {
-            if (err) throw err;
-        });*!/
 
-        var customerdata = {
+      var customerdata = {
             _id: customerID,
             FIRSTNAME: info['firstname'],
             LASTNAME: info['lastname'],
@@ -64,9 +58,6 @@ module.exports.storeData = function (req, res, next) {
 
         //Bilining collection operation
         var BILLING = db.collection('BILLING');
-        /!*BILLING.deleteMany({}, function (err, result) {
-            if (err) throw err;
-        });*!/
 
         var bilingdata = {
             _id: billingID,
@@ -86,19 +77,14 @@ module.exports.storeData = function (req, res, next) {
 
         //Shipping collection operation
         var SHIPPING = db.collection('SHIPPING');
-        /!*SHIPPING.deleteMany({}, function (err, result) {
-            if (err) throw err;
-        });*!/
 
-        //(_id, CUSTOMER_ID, SHIPPING_STREET, SHIPPING_CITY, SHIPPING_STATE, SHIPPING_ZIP)
-
-        var shipingdata = {
+           var shipingdata = {
             _id: shippingID,
             CUSTOMER_ID: customerID,
-            SHIPPING_STREET: shipment_info['address'] + ' ' + shipment_info['address2'],
-            SHIPPING_CITY: shipment_info['city'],
-            SHIPPING_STATE: shipment_info['state'],
-            SHIPPING_ZIP: shipment_info['zipcode'],
+            SHIPPING_STREET: info['address'] + ' ' + shipment_info['address2'],
+            SHIPPING_CITY: info['city'],
+            SHIPPING_STATE: info['state'],
+            SHIPPING_ZIP: info['zipcode'],
             };
 
         SHIPPING.insertOne(shipingdata, function (err, result) {
@@ -111,17 +97,14 @@ module.exports.storeData = function (req, res, next) {
         //(_id, CUSTOMER_ID, BILLING_ID, SHIPPING_ID, DATE, PRODUCT_VECTOR, ORDER_TOTAL)
         //Order collection operation
         var ORDERS = db.collection('ORDERS');
-        /!*ORDERS.deleteMany({}, function (err, result) {
-            if (err) throw err;
-        });*!/
 
         var orderdata = {
             CUSTOMER_ID: customerID,
             BILLING_ID: billingID,
             SHIPPING_ID: shippingID,
             DATE: (new Date()).toDateString(),
-            PRODUCT_VECTOR: session_basket,
-            ORDER_TOTAL: Object.keys(session_basket).length
+            PRODUCT_VECTOR: cart,
+            ORDER_TOTAL: Object.keys(cart).length
         };
 
         ORDERS.insertOne(orderdata, function (err, result) {
@@ -131,7 +114,7 @@ module.exports.storeData = function (req, res, next) {
         //Order collection operation
 
 
-        res.send('Your order is successful');*/
+        res.send('Your order is successful');
 
         //close connection when your app is terminating.
         db.close(function (err) {
