@@ -93,7 +93,7 @@ module.exports.storeData = function (req, res, next) {
         var shipingdata = {
             _id: shippingID,
             CUSTOMER_ID: customerID,
-            SHIPPING_STREET: info['address'] + ' ' + shipment_info['address2'],
+            SHIPPING_STREET: info['address'] + ' ' + info['address2'],
             SHIPPING_CITY: info['city'],
             SHIPPING_STATE: info['state'],
             SHIPPING_ZIP: info['zipcode']
