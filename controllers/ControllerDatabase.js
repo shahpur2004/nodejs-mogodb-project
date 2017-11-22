@@ -17,12 +17,12 @@ module.exports.storeData = function (req, res, next) {
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
 
-        var session_basket = JSON.parse(req.body.info);
-        var shipment_info = JSON.parse(req.body.card);
-        var payment_info = JSON.parse(req.body.cart);
+        //var session_basket = JSON.parse(req.body.info);
+        //var shipment_info = JSON.parse(req.body.card);
+        //var payment_info = JSON.parse(req.body.cart);
 
 
-        res.send(JSON.stringify(req.body.info)+" -- "+JSON.stringify(req.body.card)+" -- "+JSON.stringify(req.body.cart));
+        res.send("shahpur  --- "+JSON.stringify(req.body.info));
 
 
         /*var customerID = Math.floor((Math.random() * 1000000000000) + 1);
