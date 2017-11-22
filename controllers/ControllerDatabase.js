@@ -59,24 +59,23 @@ module.exports.storeData = function (req, res, next) {
         //Bilining collection operation
         var BILLING = db.collection('BILLING');
 
-        // var bilingdata = {
-        //     _id: billingID,
-        //     CUSTOMER_ID: customerID,
-        //     CREDITCARDTYPE: card['type'],
-        //     CREDITCARDNUM: card['number'],
-        //     CREDITCARDEXP: card['date'],
-        //     NAMEONCREDITCARD: card['name']
-        // };
-
-
         var bilingdata = {
+            CUSTOMER_ID: customerID,
+            CREDITCARDTYPE: card['type'],
+            CREDITCARDNUM: card['number'],
+            CREDITCARDEXP: card['date'],
+            NAMEONCREDITCARD: card['name']
+        };
+
+
+    /*    var bilingdata = {
             CUSTOMER_ID: 54214,
             CREDITCARDTYPE: 1,
             CREDITCARDNUM: 2,
             CREDITCARDEXP: 3,
             NAMEONCREDITCARD: 4
         };
-
+*/
 
         BILLING.insertOne(bilingdata, function (err, result) {
             if (err) throw err;
