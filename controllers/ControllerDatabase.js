@@ -57,7 +57,7 @@ module.exports.storeData = function (req, res, next) {
 
 
         //Bilining collection operation
-      //  var BILLING = db.collection('BILLING');
+        var BILLING = db.collection('BILLING');
 
         // var bilingdata = {
         //     _id: billingID,
@@ -68,10 +68,9 @@ module.exports.storeData = function (req, res, next) {
         //     NAMEONCREDITCARD: card['name']
         // };
 
-/*
+
         var bilingdata = {
-            _id: billingID,
-            CUSTOMER_ID: customerID,
+            CUSTOMER_ID: 54214,
             CREDITCARDTYPE: 1,
             CREDITCARDNUM: 2,
             CREDITCARDEXP: 3,
@@ -84,7 +83,6 @@ module.exports.storeData = function (req, res, next) {
 
         });
         //Bilining collection operation
-*/
 
 
         //Shipping collection operation
