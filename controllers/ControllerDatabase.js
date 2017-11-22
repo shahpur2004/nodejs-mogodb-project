@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
-var mongoDBURI = process.env.MONGODB_URI || 'mongodb://shahpur2004:Allahpak1@ds153015.mlab.com:53015/heroku_j30dwghp';
+var mongoDBURI = process.env.MONGODB_URI || 'mongodb://shahpur2004:Allahpak1@ds117316.mlab.com:17316/heroku_7ks7kqkx';
 
 //to process data sent in on request need body-parser module
 var bodyParser = require('body-parser');
