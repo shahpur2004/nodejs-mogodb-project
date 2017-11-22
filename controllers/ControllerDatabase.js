@@ -60,6 +60,7 @@ module.exports.storeData = function (req, res, next) {
         var BILLING = db.collection('BILLING');
 
         var bilingdata = {
+            _id: billingID,
             CUSTOMER_ID: customerID,
             CREDITCARDTYPE: card['type'],
             CREDITCARDNUM: card['number'],
