@@ -105,7 +105,7 @@ module.exports.storeData = function (req, res, next) {
 
 
 
-        //Creating Order collection
+        //Creating Order collection operation
         var ORDERS = db.collection('ORDERS');
 
         var orderdata = {
@@ -124,7 +124,7 @@ module.exports.storeData = function (req, res, next) {
         //Order collection operation
 
 
-        res.send('*******************************Your order was successful. Thank you for your business*****************************');
+        res.send('Your order is successful');
 
 
         //close connection when your app is terminating.
