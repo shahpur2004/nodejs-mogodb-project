@@ -69,14 +69,6 @@ module.exports.storeData = function (req, res, next) {
         };
 
 
-    /*    var bilingdata = {
-            CUSTOMER_ID: 54214,
-            CREDITCARDTYPE: 1,
-            CREDITCARDNUM: 2,
-            CREDITCARDEXP: 3,
-            NAMEONCREDITCARD: 4
-        };
-*/
 
         BILLING.insertOne(bilingdata, function (err, result) {
             if (err) throw err;
