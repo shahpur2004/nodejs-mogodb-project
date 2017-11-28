@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
+// requiring the Mongodb
 var mongodb = require('mongodb');
+// making a connection to mangodb
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://shahpur2004:Allahpak1@ds117316.mlab.com:17316/heroku_7ks7kqkx';
 
 //to process data sent in on request need body-parser module
@@ -10,10 +12,10 @@ var querystring = require('querystring'); //for use in GET Query string of form 
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
 
-
+// exporting the data
 module.exports.storeData = function (req, res, next) {
 
-
+// manaully making IDs for the collections
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
 
@@ -68,7 +70,7 @@ module.exports.storeData = function (req, res, next) {
             NAMEONCREDITCARD: card['name']
         };
 
-
+        // this is for testing the billing data
     /*    var bilingdata = {
             CUSTOMER_ID: 54214,
             CREDITCARDTYPE: 1,
@@ -105,7 +107,7 @@ module.exports.storeData = function (req, res, next) {
 
 
 
-        //Creating Order collection operation
+        //Creating Order collection
         var ORDERS = db.collection('ORDERS');
 
         var orderdata = {
@@ -123,8 +125,8 @@ module.exports.storeData = function (req, res, next) {
         });
         //Order collection operation
 
-
-        res.send('******************Thank You, order successful  *********************');
+        // send the output massage
+        res.send('****************** Thank You, order successful  *********************');
 
 
         //close connection when your app is terminating.
