@@ -1,23 +1,19 @@
-// this is from exercise 1
 var express = require('express');
 var router = express.Router();
-// requiring the Mongodb
 var mongodb = require('mongodb');
-// making a connection to mangodb
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://shahpur2004:Allahpak1@ds117316.mlab.com:17316/heroku_7ks7kqkx';
 
 //to process data sent in on request need body-parser module
 var bodyParser = require('body-parser');
-
 var path = require('path'); //to work with separtors on any OS including Windows
 var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
 
-// exporting the data
+
 module.exports.storeData = function (req, res, next) {
 
-// manaully making IDs for the collections
+
     mongodb.MongoClient.connect(mongoDBURI, function (err, db) {
         if (err) throw err;
 
@@ -35,7 +31,7 @@ module.exports.storeData = function (req, res, next) {
 
         var customerdata = {
             _id: customerID,
-            FIRSTNAME: info['firstname'],
+            FIRSTNAME: info['firstname'],// indexes of the collection
             LASTNAME: info['lastname'],
             STREET: info['address'] + ' ' + info['address2'],
             CITY: info['city'],
@@ -81,7 +77,7 @@ module.exports.storeData = function (req, res, next) {
             NAMEONCREDITCARD: 4
         };
 */
-        // checking for error
+
         BILLING.insertOne(bilingdata, function (err, result) {
             if (err) throw err;
 
@@ -100,7 +96,7 @@ module.exports.storeData = function (req, res, next) {
             SHIPPING_STATE: info['state'],
             SHIPPING_ZIP: info['zipcode']
         };
-        //checking for error
+
         SHIPPING.insertOne(shipingdata, function (err, result) {
             if (err) throw err;
 
@@ -120,7 +116,7 @@ module.exports.storeData = function (req, res, next) {
             PRODUCT_VECTOR: cart,
             ORDER_TOTAL: Object.keys(cart).length
         };
-        //checking for error
+
         ORDERS.insertOne(orderdata, function (err, result) {
             if (err) throw err;
 
@@ -128,12 +124,10 @@ module.exports.storeData = function (req, res, next) {
         //Order collection operation
 
 
-        // send the output massage
-        res.send('****************** Thank You, order successful  *********************');
+        res.send('Your order is successful');
 
 
-
-        //close connection when your data is sent.
+        //close connection when your app is terminating.
         db.close(function (err) {
             if (err) throw err;
         });
