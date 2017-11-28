@@ -35,7 +35,7 @@ module.exports.storeData = function (req, res, next) {
 
         var customerdata = {
             _id: customerID,
-            FIRSTNAME: info['firstname'],// indexes of the collection
+            FIRSTNAME: info['firstname'],
             LASTNAME: info['lastname'],
             STREET: info['address'] + ' ' + info['address2'],
             CITY: info['city'],
