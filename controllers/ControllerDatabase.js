@@ -26,12 +26,12 @@ module.exports.storeData = function (req, res, next) {
         var billingID = Math.floor((Math.random() * 1000000000000) + 1);
         var shippingID = Math.floor((Math.random() * 1000000000000) + 1);
 
-        //customer collection operation
+        //creating a customer collection
         var CUSTOMERS = db.collection('CUSTOMERS');
 
         var customerdata = {
             _id: customerID,
-            FIRSTNAME: info['firstname'],
+            FIRSTNAME: info['firstname'],// indexes of the collection
             LASTNAME: info['lastname'],
             STREET: info['address'] + ' ' + info['address2'],
             CITY: info['city'],
@@ -46,7 +46,7 @@ module.exports.storeData = function (req, res, next) {
             ZIPB: info['zipcodeB'],
             PHONEB: info['telephoneB']
         };
-
+        // checking for error
         CUSTOMERS.insertOne(customerdata, function (err, result) {
             if (err) throw err;
 
@@ -56,7 +56,7 @@ module.exports.storeData = function (req, res, next) {
         //res.send(JSON.stringify(req.body.card));
 
 
-        //Bilining collection operation
+        //Creating billing collection
         var BILLING = db.collection('BILLING');
 
         var bilingdata = {
@@ -85,7 +85,7 @@ module.exports.storeData = function (req, res, next) {
         //Bilining collection operation
 
 
-        //Shipping collection operation
+        //Creating Shipping collection
         var SHIPPING = db.collection('SHIPPING');
 
         var shipingdata = {
@@ -104,8 +104,8 @@ module.exports.storeData = function (req, res, next) {
         //Shipping collection operation
 
 
-        //(_id, CUSTOMER_ID, BILLING_ID, SHIPPING_ID, DATE, PRODUCT_VECTOR, ORDER_TOTAL)
-        //Order collection operation
+
+        //Creating Order collection
         var ORDERS = db.collection('ORDERS');
 
         var orderdata = {
@@ -124,7 +124,7 @@ module.exports.storeData = function (req, res, next) {
         //Order collection operation
 
 
-        res.send('Your order is successful');
+        res.send('*******************************Your order was successful. Thank you for your business*****************************');
 
 
         //close connection when your app is terminating.
