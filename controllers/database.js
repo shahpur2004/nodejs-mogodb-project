@@ -69,14 +69,14 @@ module.exports.storeData = function (req, res, next) {
         };
 
 
-    /*    var bilingdata = {
-            CUSTOMER_ID: 54214,
-            CREDITCARDTYPE: 1,
-            CREDITCARDNUM: 2,
-            CREDITCARDEXP: 3,
-            NAMEONCREDITCARD: 4
-        };
-*/
+        /*    var bilingdata = {
+                CUSTOMER_ID: 54214,
+                CREDITCARDTYPE: 1,
+                CREDITCARDNUM: 2,
+                CREDITCARDEXP: 3,
+                NAMEONCREDITCARD: 4
+            };
+    */
 
         BILLING.insertOne(bilingdata, function (err, result) {
             if (err) throw err;
@@ -124,7 +124,7 @@ module.exports.storeData = function (req, res, next) {
         //Order collection operation
 
 
-        res.send('Your order is successful');
+        res.send('****************** Thank You, order successful  *********************');
 
 
         //close connection when your app is terminating.
